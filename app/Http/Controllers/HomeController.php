@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        dd(request()->user()->following);
+        dd(request()->user()->postsFromFollowing);
         return view('home');
     }
 }
