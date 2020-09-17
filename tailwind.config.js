@@ -5,6 +5,10 @@ module.exports = {
   },
   purge: [],
   theme: {
+    fontFamily: {
+      'display': ['Oswald'],
+      'body': ['Open Sans']
+    },
     extend: {},
   },
   variants: {},
