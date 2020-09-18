@@ -8,19 +8,30 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.use(require('vue-moment'));
+import VueMomen from 'vue-moment';
+
+Vue.use(VueMomen);
+
+
+// Vuex modules
+// import timeline from './store/timeline'
+
+// const store = Vuex.Store({
+//     modules: {
+//         timeline
+//     }
+// })
+
+import store from './store'
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
  * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-//Vue.component('app-timeline', require('./components/AppTimeline.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,4 +41,5 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 const app = new Vue({
     el: '#app',
+    store
 });

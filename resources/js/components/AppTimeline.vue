@@ -9,16 +9,21 @@
 
 <script>
 import axios from 'axios'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-    data() {
-        return {
-            posts: []
-        }
+    computed: {
+        ...mapGetters({
+            posts: 'timeline/posts'
+        })
     },
-    async mounted() {
-        let res  = await axios.get('/api/timeline')
-        this.posts = res.data.data
+    methods: {
+        ...mapActions({
+            getPosts: 'timeline/getPosts'
+        })
+    },
+    mounted() {
+        this.getPosts()
     }
 }
 </script>
