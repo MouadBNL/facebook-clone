@@ -1,9 +1,15 @@
 <template>
     <div>
+
+        <app-post-composer/>
+
         <app-post
             v-for="post in posts" :key="post.id"
             :post="post"
         />
+
+
+
         <div v-if="posts.length"
             v-observe-visibility="{
                 callback: loadMorePosts
