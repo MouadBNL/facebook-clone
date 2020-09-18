@@ -8,20 +8,13 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import VueMomen from 'vue-moment';
+import VueMomen from 'vue-moment'
+ 
 
-Vue.use(VueMomen);
+Vue.use(VueMomen)
 
 
-// Vuex modules
-// import timeline from './store/timeline'
-
-// const store = Vuex.Store({
-//     modules: {
-//         timeline
-//     }
-// })
-
+// Vuex
 import store from './store'
 
 /**

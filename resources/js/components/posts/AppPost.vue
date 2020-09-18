@@ -1,6 +1,6 @@
 <template>
     <article class="shadow-md w-full bg-white p-3 my-6">
-        <header class="flex mb-4">
+        <header class="mb-4">
             <app-post-username
                 :user="post.user"
             />
