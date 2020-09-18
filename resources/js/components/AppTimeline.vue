@@ -53,6 +53,13 @@ export default {
     },
     mounted() {
         this.getPosts(this.page)
+        axios.get('/api/user')
+        .then((res) => {
+            console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err.data)
+        })
     }
 }
 </script>

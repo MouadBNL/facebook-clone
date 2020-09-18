@@ -16,6 +16,7 @@ Vue.use(VueMomen)
 
 // Vuex
 import store from './store'
+store.dispatch('auth/getAuth')
 
 /**
  * The following block of code may be used to automatically register your
