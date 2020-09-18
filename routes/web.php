@@ -23,3 +23,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('api/timeline', 'Api\Timeline\TimelineController@index')->name('timeline');
+Route::get('/t', function() {
+    return \App\Post::first();
+});
