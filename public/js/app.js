@@ -2040,7 +2040,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2063,11 +2065,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+  data: function data() {
+    return {
+      form: {
+        body: ''
+      }
+    };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     userAvatar: 'auth/avatar'
-  }))
+  })),
+  methods: {
+    submitPost: function submitPost() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/posts', {
+        body: this.form.body
+      }).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        console.error(err.res);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -38499,7 +38524,9 @@ var render = function() {
         _vm.post.created_at
           ? _c("p", { staticClass: "text-xs font-semibold text-gray-600" }, [
               _vm._v(
-                _vm._s(_vm._f("moment")("2020-09-18", "dddd, MMMM Do YYYY"))
+                _vm._s(
+                  _vm._f("moment")(_vm.post.created_at, "dddd, MMMM Do YYYY")
+                )
               )
             ])
           : _vm._e()
@@ -38540,21 +38567,56 @@ var render = function() {
     "section",
     { staticClass: "shadow-md w-full bg-white rounded p-3 my-5" },
     [
-      _c("form", { staticClass: "w-full flex" }, [
-        _c("div", { staticClass: "mr-4 flex flex-col justify-items-end" }, [
-          _c("img", {
-            staticClass: "rounded-full h-10 w-10 object-cover mb-2",
-            attrs: { src: _vm.userAvatar, alt: "profile" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "appearance-none focus:outline-none w-full text-xl",
-          attrs: { cols: "30", rows: "3", placeholder: "What's on your mind?" }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
+      _c(
+        "form",
+        {
+          staticClass: "w-full",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submitPost($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "flex" }, [
+            _c("div", { staticClass: "mr-4 flex flex-col justify-items-end" }, [
+              _c("img", {
+                staticClass: "rounded-full h-10 w-10 object-cover mb-2",
+                attrs: { src: _vm.userAvatar, alt: "profile" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.body,
+                  expression: "form.body"
+                }
+              ],
+              staticClass: "appearance-none focus:outline-none w-full text-xl",
+              attrs: {
+                cols: "30",
+                rows: "3",
+                placeholder: "What's on your mind?"
+              },
+              domProps: { value: _vm.form.body },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "body", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ]
+      )
     ]
   )
 }
@@ -38583,12 +38645,18 @@ var staticRenderFns = [
       ),
       _vm._v(" "),
       _c(
-        "i",
+        "button",
         {
-          staticClass: "w-7 h-7 mx-4 text-gray-500",
-          attrs: { "data-feather": "send" }
+          staticClass: "px-3 py-1 mx-4 w-7 bg-blue-600 rounded-full",
+          attrs: { type: "submit" }
         },
-        [_vm._v("send")]
+        [
+          _c(
+            "i",
+            { staticClass: "text-gray-100", attrs: { "data-feather": "send" } },
+            [_vm._v("send")]
+          )
+        ]
       )
     ])
   }

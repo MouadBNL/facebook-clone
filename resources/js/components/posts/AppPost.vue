@@ -4,7 +4,7 @@
             <app-post-username
                 :user="post.user"
             />
-            <p v-if="post.created_at" class="text-xs font-semibold text-gray-600">{{ "2020-09-18" | moment("dddd, MMMM Do YYYY") }}</p>
+            <p v-if="post.created_at" class="text-xs font-semibold text-gray-600">{{ post.created_at | moment("dddd, MMMM Do YYYY") }}</p>
         </header>
         <section>
             <p class="mb-2">
