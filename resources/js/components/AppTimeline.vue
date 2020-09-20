@@ -23,7 +23,7 @@
 <script>
 import axios from 'axios'
 import { ObserveVisibility } from "vue-observe-visibility";
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
     directives: {
@@ -37,7 +37,8 @@ export default {
     computed: {
         ...mapGetters({
             posts: 'timeline/posts',
-            lastPage: 'timeline/lastPage'
+            lastPage: 'timeline/lastPage',
+            userID: 'auth/id'
         })
     },
     methods: {
@@ -49,17 +50,18 @@ export default {
         },
         ...mapActions({
             getPosts: 'timeline/getPosts'
+        }),
+        ...mapMutations({
+            CREATE_POST: 'timeline/CREATE_POST'
         })
     },
     mounted() {
         this.getPosts(this.page)
-        axios.get('/api/user')
-        .then((res) => {
-            console.log(res.data)
-        })
-        .catch((err) => {
-            console.log(err.data)
-        })
+
+        Echo.private('timeline.' + this.userID)
+            .listen('.PostWasCreated', (e) => {
+                this.CREATE_POST(e)
+            })
     }
 }
 </script>

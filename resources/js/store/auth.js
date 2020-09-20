@@ -4,6 +4,7 @@ export default {
     namespaced: true,
     state: {
         user: {
+            id: 0,
             name: 1,
             username: '',
             avatar: ''
@@ -11,6 +12,9 @@ export default {
     },
 
     getters: {
+        id(state){
+            return state.user.id
+        },
         name(state){
             return state.user.name
         },

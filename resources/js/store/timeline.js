@@ -10,6 +10,7 @@ export default {
     getters: {
         posts(state) {
             return state.posts
+                    
         },
         lastPage(state){
             return state.lastPage
@@ -17,6 +18,9 @@ export default {
     },
 
     mutations: {
+        CREATE_POST (state, post){
+            state.posts.unshift(post)
+        },
         PUSH_POSTS (state, data) {
             state.posts.push(...data)
         },

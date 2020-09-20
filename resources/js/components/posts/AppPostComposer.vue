@@ -40,7 +40,8 @@ export default {
                 body: this.form.body
             })
             .then(res => {
-                console.log(res)
+                //console.log(res)
+                if(res.status == 200) this.form.body = '';
             })
             .catch(err => {
                 console.error(err.res); 

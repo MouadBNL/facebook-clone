@@ -1966,9 +1966,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
     posts: 'timeline/posts',
-    lastPage: 'timeline/lastPage'
+    lastPage: 'timeline/lastPage',
+    userID: 'auth/id'
   })),
-  methods: _objectSpread({
+  methods: _objectSpread(_objectSpread({
     loadMorePosts: function loadMorePosts(isVisible) {
       if (!isVisible) return;
       if (this.page >= this.lastPage) return;
@@ -1977,13 +1978,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])({
     getPosts: 'timeline/getPosts'
+  })), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapMutations"])({
+    CREATE_POST: 'timeline/CREATE_POST'
   })),
   mounted: function mounted() {
+    var _this = this;
+
     this.getPosts(this.page);
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/user').then(function (res) {
-      console.log(res.data);
-    })["catch"](function (err) {
-      console.log(err.data);
+    Echo["private"]('timeline.' + this.userID).listen('.PostWasCreated', function (e) {
+      _this.CREATE_POST(e);
     });
   }
 });
@@ -2084,10 +2087,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   methods: {
     submitPost: function submitPost() {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/posts', {
         body: this.form.body
       }).then(function (res) {
-        console.log(res);
+        //console.log(res)
+        if (res.status == 200) _this.form.body = '';
       })["catch"](function (err) {
         console.error(err.res);
       });
@@ -63379,27 +63385,27 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.use(vue_moment__WEBPACK_IMPORTED_MODULE_0___default.a); // Vuex
 
 
-_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('auth/getAuth');
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- */
+_store__WEBPACK_IMPORTED_MODULE_1__["default"].dispatch('auth/getAuth').then(function () {
+  /**
+   * The following block of code may be used to automatically register your
+   * Vue components. It will recursively scan this directory for the Vue
+   * components and automatically register them with their "basename".
+   */
+  var files = __webpack_require__("./resources/js sync recursive \\.vue$/");
 
-var files = __webpack_require__("./resources/js sync recursive \\.vue$/");
+  files.keys().map(function (key) {
+    return Vue.component(key.split('/').pop().split('.')[0], files(key)["default"]);
+  });
+  /**
+   * Next, we will create a fresh Vue application instance and attach it to
+   * the page. Then, you may begin adding components to this application
+   * or customize the JavaScript scaffolding to fit your unique needs.
+   */
 
-files.keys().map(function (key) {
-  return Vue.component(key.split('/').pop().split('.')[0], files(key)["default"]);
-});
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-var app = new Vue({
-  el: '#app',
-  store: _store__WEBPACK_IMPORTED_MODULE_1__["default"]
+  var app = new Vue({
+    el: '#app',
+    store: _store__WEBPACK_IMPORTED_MODULE_1__["default"]
+  });
 });
 
 /***/ }),
@@ -63444,13 +63450,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // Pusher.logToConsole = true;
+
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "38a12f888414b5ea94be",
   cluster: "eu",
-  encrypted: false,
-  disableStats: true
+  forceTLS: true
 });
 
 /***/ }),
@@ -63755,12 +63761,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   namespaced: true,
   state: {
     user: {
+      id: 0,
       name: 1,
       username: '',
       avatar: ''
     }
   },
   getters: {
+    id: function id(state) {
+      return state.user.id;
+    },
     name: function name(state) {
       return state.user.name;
     },
@@ -63880,6 +63890,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   mutations: {
+    CREATE_POST: function CREATE_POST(state, post) {
+      state.posts.unshift(post);
+    },
     PUSH_POSTS: function PUSH_POSTS(state, data) {
       var _state$posts;
 
