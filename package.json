@@ -25,6 +25,8 @@
     },
     "dependencies": {
         "babel-loader": "^8.1.0",
+        "laravel-echo": "^1.8.1",
+        "pusher-js": "^7.0.0",
         "tailwindcss": "^1.8.10",
         "vue-moment": "^4.1.0",
         "vue-observe-visibility": "^0.4.6",
