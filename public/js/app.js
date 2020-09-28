@@ -63896,7 +63896,12 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     PUSH_POSTS: function PUSH_POSTS(state, data) {
       var _state$posts;
 
-      (_state$posts = state.posts).push.apply(_state$posts, _toConsumableArray(data));
+      (_state$posts = state.posts).push.apply(_state$posts, _toConsumableArray(data.filter(function (post) {
+        //filtering the posts that were just created
+        return !state.posts.map(function (p) {
+          return p.id;
+        }).includes(post.id);
+      })));
     },
     PUSH_LAST_PAGE: function PUSH_LAST_PAGE(state, page) {
       state.lastPage = page;

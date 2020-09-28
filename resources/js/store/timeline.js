@@ -22,7 +22,11 @@ export default {
             state.posts.unshift(post)
         },
         PUSH_POSTS (state, data) {
-            state.posts.push(...data)
+            state.posts.push(
+                ...data.filter((post) => { //filtering the posts that were just created
+                    return !state.posts.map((p) => p.id).includes(post.id)
+                })
+            )
         },
         PUSH_LAST_PAGE (state, page) {
             state.lastPage = page
