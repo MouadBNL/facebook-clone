@@ -13,6 +13,9 @@ class TimelineController extends Controller
         $posts = request()->user()
                           ->postsFromFollowing()
                           ->latest()
+                          ->with([
+                              'user'
+                          ])
                           ->paginate(10);
 
         return new PostCollection($posts);
