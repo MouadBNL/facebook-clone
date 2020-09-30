@@ -1,21 +1,9 @@
 <template>
     <article class="shadow-md w-full bg-white p-3 my-6">
-        <header class="mb-4">
-            <app-post-username
-                :user="post.user"
-            />
-            <p v-if="post.created_at" class="text-xs font-semibold text-gray-600">{{ post.created_at | moment("dddd, MMMM Do YYYY") }}</p>
-        </header>
-        <section>
-            <p class="mb-2">
-                {{ post.body }}
-            </p>
-            <!-- <div class="flex flex-auto items-start max-w-full">
-                <img class="w-1/4 object-contain rounded m-1" src="/images/lerone-pieters-FFfrL2bJCUs-unsplash.jpg">
-                <img class="w-1/4 object-contain rounded m-1" src="/images/romain-tordo-pqbh-KsIxoE-unsplash.jpg">
-                <img class="w-1/4 object-contain rounded m-1" src="/images/the-blowup-Gyv_mXDbO70-unsplash.jpg">
-            </div> -->
-        </section>
+        <component
+            :is="`app-post-variant-${post.type}`"
+            :post="post"
+        />
     </article>
 </template>
 
@@ -29,7 +17,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

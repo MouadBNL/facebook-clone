@@ -9,7 +9,6 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueMomen from 'vue-moment'
- 
 
 Vue.use(VueMomen)
 

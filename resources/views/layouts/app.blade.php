@@ -10,7 +10,6 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Scripts -->
-        <script src="https://unpkg.com/feather-icons"></script>
 
         <script src="{{ asset('js/app.js') }}" defer></script>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -19,9 +18,5 @@
         <div id="app">
             @yield('content')
         </div>
-
-        <script>
-            feather.replace()
-        </script>
     </body>
 </html>

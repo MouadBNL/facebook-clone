@@ -14,4 +14,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function originalPost()
+    {
+        return $this->hasOne(Post::class, 'id', 'original_post_id');
+    }
 }
