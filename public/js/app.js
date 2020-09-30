@@ -59536,8 +59536,10 @@ var render = function() {
                   expression: "form.body"
                 }
               ],
-              staticClass: "appearance-none focus:outline-none w-full text-xl",
+              staticClass:
+                "appearance-none resize-none focus:outline-none w-full text-xl",
               attrs: {
+                autofocus: "",
                 cols: "30",
                 rows: "3",
                 placeholder: "What's on your mind?"
@@ -59750,7 +59752,8 @@ var render = function() {
         _vm._v(" "),
         _c("app-post-variant-" + _vm.post.original_post.type, {
           tag: "component",
-          staticClass: "border-solid border rounded border-gray-400 m-4 p-2",
+          staticClass:
+            "border-solid border rounded border-gray-300 m-1 ml-8 p-2",
           attrs: { post: _vm.post.original_post }
         })
       ],

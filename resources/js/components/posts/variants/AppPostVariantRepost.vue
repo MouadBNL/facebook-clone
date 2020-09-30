@@ -14,7 +14,7 @@
                 {{ post.body }}
             </p>
 
-            <component class="border-solid border rounded border-gray-400 m-4 p-2"
+            <component class="border-solid border rounded border-gray-300 m-1 ml-8 p-2"
                 :is="`app-post-variant-${post.original_post.type}`"
                 :post="post.original_post"
             />
