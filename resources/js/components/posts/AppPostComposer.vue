@@ -5,7 +5,9 @@
                 <div class="mr-4 flex flex-col justify-items-end">
                     <img class="rounded-full h-10 w-10 object-cover mb-2" v-bind:src="userAvatar" alt="profile">
                 </div>
-                <textarea v-model="form.body" class="appearance-none resize-none focus:outline-none w-full text-xl" autofocus cols="30" rows="3" placeholder="What's on your mind?"></textarea>
+                <app-post-composer-textarea
+                    v-model="form.body"
+                />
             </div>
             <div class="flex justify-end my-2">
                     <i class="w-7 h-7 mx-4 text-gray-500 mt-auto" data-feather="image">image</i>
