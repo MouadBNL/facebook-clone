@@ -21,4 +21,28 @@ class PostCollection extends ResourceCollection
             'data' => $this->collection
         ];
     }
+
+    public function with($request)
+    {
+        return [
+            'meta' => [
+                'likes' => $this->likes($request)
+            ]
+        ];
+    }
+
+    private function likes($request)
+    {
+        if(!$user = $request->user())
+        {
+            return [];
+        }
+        
+        return $user->likes()
+                    ->whereIn('post_id',
+                    $this->collection->pluck('id')
+                )
+                ->pluck('post_id')
+                ->toArray();
+    }
 }

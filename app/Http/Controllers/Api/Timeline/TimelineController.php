@@ -14,7 +14,7 @@ class TimelineController extends Controller
                           ->postsFromFollowing()
                           ->latest()
                           ->with([
-                              'user'
+                              'user', 'likes'
                           ])
                           ->paginate(10);
 

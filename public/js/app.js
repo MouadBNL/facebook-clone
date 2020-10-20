@@ -2236,6 +2236,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    post: {
+      required: true,
+      type: Object
+    }
+  },
   components: {
     MessageSquareIcon: vue_feather_icons__WEBPACK_IMPORTED_MODULE_0__["MessageSquareIcon"]
   }
@@ -2261,8 +2267,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    post: {
+      required: true,
+      type: Object
+    }
+  },
   components: {
     HeartIcon: vue_feather_icons__WEBPACK_IMPORTED_MODULE_0__["HeartIcon"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/posts/actions/AppPostActionGroup.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/posts/actions/AppPostActionGroup.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    post: {
+      required: true,
+      type: Object
+    }
   }
 });
 
@@ -2286,6 +2326,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    post: {
+      required: true,
+      type: Object
+    }
+  },
   components: {
     RepeatIcon: vue_feather_icons__WEBPACK_IMPORTED_MODULE_0__["RepeatIcon"]
   }
@@ -59851,7 +59897,9 @@ var render = function() {
     [
       _c("heart-icon", { attrs: { size: "1.2x" } }),
       _vm._v(" "),
-      _c("span", { staticClass: "mr-1 ml-4" }, [_vm._v("0")])
+      _c("span", { staticClass: "mr-1 ml-4" }, [
+        _vm._v(_vm._s(_vm.post.likes_count))
+      ])
     ],
     1
   )
@@ -59882,11 +59930,11 @@ var render = function() {
     "ul",
     { staticClass: "flex" },
     [
-      _c("app-like-action"),
+      _c("app-like-action", { attrs: { post: _vm.post } }),
       _vm._v(" "),
-      _c("app-repost-action"),
+      _c("app-repost-action", { attrs: { post: _vm.post } }),
       _vm._v(" "),
-      _c("app-comment-action")
+      _c("app-comment-action", { attrs: { post: _vm.post } })
     ],
     1
   )
@@ -59977,7 +60025,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("app-post-action-group")
+      _c("app-post-action-group", { attrs: { post: _vm.post } })
     ],
     1
   )
@@ -79247,15 +79295,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AppPostActionGroup_vue_vue_type_template_id_e0cf8f7e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AppPostActionGroup.vue?vue&type=template&id=e0cf8f7e& */ "./resources/js/components/posts/actions/AppPostActionGroup.vue?vue&type=template&id=e0cf8f7e&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _AppPostActionGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AppPostActionGroup.vue?vue&type=script&lang=js& */ "./resources/js/components/posts/actions/AppPostActionGroup.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AppPostActionGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _AppPostActionGroup_vue_vue_type_template_id_e0cf8f7e___WEBPACK_IMPORTED_MODULE_0__["render"],
   _AppPostActionGroup_vue_vue_type_template_id_e0cf8f7e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -79269,6 +79319,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/posts/actions/AppPostActionGroup.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/posts/actions/AppPostActionGroup.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/posts/actions/AppPostActionGroup.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AppPostActionGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./AppPostActionGroup.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/posts/actions/AppPostActionGroup.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AppPostActionGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

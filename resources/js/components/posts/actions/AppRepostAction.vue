@@ -8,6 +8,12 @@
 import { RepeatIcon  } from 'vue-feather-icons'
 
 export default {
+    props: {
+        post: {
+            required: true,
+            type: Object
+        }
+    },
     components: { RepeatIcon },
 }
 </script>

@@ -16,7 +16,7 @@
                 <img class="w-1/4 object-contain rounded m-1" src="/images/the-blowup-Gyv_mXDbO70-unsplash.jpg">
             </div> -->
         </section>
-        <app-post-action-group/>
+        <app-post-action-group :post="post"/>
     </div>
 </template>
 

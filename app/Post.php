@@ -19,4 +19,9 @@ class Post extends Model
     {
         return $this->hasOne(Post::class, 'id', 'original_post_id');
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
