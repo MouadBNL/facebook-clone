@@ -39,6 +39,8 @@ export default {
             commit('PUSH_POSTS', res.data.data)
 
             commit('PUSH_LAST_PAGE', res.data.meta.last_page)
+
+            commit('likes/PUSH_LIKES', res.data.meta.likes, { root: true })
         }
     }
 }
